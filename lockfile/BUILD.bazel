@@ -1,0 +1,34 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lockfile",
+    srcs = [
+        "compare.go",
+        "lockfile.go",
+        "schema.go",
+        "sexp.go",
+        "sexplock.go",
+    ],
+    importpath = "github.com/nextgui/stableproto/lockfile",
+    visibility = ["//visibility:public"],
+    deps = ["@org_golang_google_protobuf//types/descriptorpb"],
+)
+
+go_test(
+    name = "lockfile_test",
+    srcs = [
+        "compare_test.go",
+        "sexp_test.go",
+    ],
+    embed = [":lockfile"],
+    deps = [
+        "@org_golang_google_protobuf//proto",
+        "@org_golang_google_protobuf//types/descriptorpb",
+    ],
+)
+
+go_test(
+    name = "lockfile_api_test",
+    srcs = ["lockfile_test.go"],
+    deps = [":lockfile"],
+)

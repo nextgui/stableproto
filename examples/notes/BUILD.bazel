@@ -1,0 +1,16 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("//bazel:defs.bzl", "proto_schema_lock")
+
+proto_library(
+    name = "notes_proto",
+    srcs = ["notes.proto"],
+    deps = ["@protobuf//:timestamp_proto"],
+)
+
+# notes_lock fails the build when notes.proto and notes.lock disagree.
+# notes_lock_update rewrites notes.lock.
+proto_schema_lock(
+    name = "notes_lock",
+    proto = ":notes_proto",
+    package = "example.notes.v1",
+)

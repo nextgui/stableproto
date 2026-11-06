@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package example.notes.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// A note as it is stored. Its field numbers and names are locked by
+// notes.lock.
+message Note {
+  string id = 1;
+  string body = 2;
+  repeated string tags = 3;
+  reserved 4;
+  reserved "title";
+  google.protobuf.Timestamp created = 5;
+}

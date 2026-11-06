@@ -1,0 +1,19 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "stableproto_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/nextgui/stableproto/cmd/stableproto",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//lockfile",
+        "@org_golang_google_protobuf//proto",
+        "@org_golang_google_protobuf//types/descriptorpb",
+    ],
+)
+
+go_binary(
+    name = "stableproto",
+    embed = [":stableproto_lib"],
+    visibility = ["//visibility:public"],
+)
