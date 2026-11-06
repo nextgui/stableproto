@@ -136,7 +136,7 @@ The lock file is the only record, so anyone who can edit it can bypass the check
 | Waiving a check | `-force -reason`, recorded in the lock beside the field | `except`, `ignore` and `ignore_only` in `buf.yaml`; no reason recorded | `--force` rewrites the lock; no reason recorded |
 | Bazel | Native rule, `proto_schema_lock` | `buf_breaking_test` in rules_buf (beta), against a checked-in image | Not documented |
 
-Use `buf breaking` if you already use Buf, or need to check services and generated-code compatibility. stableproto is for stored schemas in a Bazel build: it checks only what changes how stored data decodes, needs no earlier revision to compare against, and keeps every waiver, with its reason, in the lock file.
+`buf breaking` suits a project that already uses Buf, or needs to check services and generated-code compatibility. stableproto is for stored schemas in a Bazel build: it checks only what changes how stored data decodes, needs no earlier revision to compare against, and keeps every waiver, with its reason, in the lock file.
 
 ## License
 
